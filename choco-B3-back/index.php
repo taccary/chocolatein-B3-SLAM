@@ -1,0 +1,22 @@
+<?php
+include "getRacine.php";
+include "$racine/controleurs/controleurPrincipal.php";
+include_once "$racine/modele/authentification.inc.php";
+
+
+
+if (isset($_GET["action"])){
+    $action = $_GET["action"];
+}
+else{
+    
+    $action = "defaut";
+}
+
+
+$fichier = controleurPrincipal($action);
+
+include "$racine/controleurs/$fichier";
+
+
+?>

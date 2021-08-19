@@ -3,6 +3,7 @@
 require_once './modele/class.pdochoc.inc.php';
 $pdo = PdoChoc::getPdoChoc();
 require './vues/v_entete.php';
+require './controleurs/c_menu.php';
 $uc = filter_input(INPUT_GET, 'uc', FILTER_SANITIZE_STRING);
 if (empty($uc)) {
     $uc = 'accueil';
