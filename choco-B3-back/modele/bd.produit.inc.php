@@ -1,81 +1,6 @@
 <?php
 
 include_once "bd.inc.php";
-
-function getGammes() {
-    $resultat = array();
-    try {
-        $cnx = connexionPDO();
-        $req = $cnx->prepare("select * from gamme");
-        $req->execute();
-        $resultat = $req->fetchAll(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        print "Erreur !: " . $e->getMessage();
-        die();
-    }
-    return $resultat;
-}
-
-function getUneGamme($id) {
-    $resultat = array();
-    try {
-        $cnx = connexionPDO();
-        $req = $cnx->prepare("select * from gamme where id = :id");
-        $req->bindParam(':id', $id, PDO::PARAM_STR);
-        $req->execute();
-        $resultat = $req->fetch(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        print "Erreur !: " . $e->getMessage();
-        die();
-    }
-    return $resultat;
-}
-
-function ajoutGamme($id, $libelle, $picto){
-    $resultat = false;
-    try {
-        $cnx = connexionPDO();
-        $req = $cnx->prepare('INSERT INTO gamme (id, libelle, picto) VALUES (:id, :libelle, :picto)');
-        $req->bindParam(':id', $id, PDO::PARAM_STR);
-        $req->bindParam(':libelle', $libelle, PDO::PARAM_STR);
-        $req->bindParam(':picto', $picto, PDO::PARAM_STR);
-        $resultat = $req->execute();
-    } catch (PDOException $e) {
-        print "Erreur !: " . $e->getMessage();
-        die();
-    }
-    return $resultat;
-}
-
-function editGamme($id, $libelle, $picto){
-    $resultat = false;
-    try {
-        $cnx = connexionPDO();
-        $req = $cnx->prepare('UPDATE gamme SET libelle = :libelle, picto = :picto  WHERE id = :id');
-        $req->bindParam(':id', $id, PDO::PARAM_STR);
-        $req->bindParam(':libelle', $libelle, PDO::PARAM_STR);
-        $req->bindParam(':picto', $picto, PDO::PARAM_STR);
-        $resultat = $req->execute();
-    } catch (PDOException $e) {
-        print "Erreur !: " . $e->getMessage();
-        die();
-    }
-    return $resultat;
-}
-
-function supprGamme($id){
-    $resultat = false;
-    try {
-        $cnx = connexionPDO();
-        $req = $cnx->prepare('DELETE FROM gamme WHERE id = :id ');
-        $req->bindParam(':id', $id, PDO::PARAM_STR);
-        $resultat = $req->execute();
-    } catch (PDOException $e) {
-        print "Erreur !: " . $e->getMessage();
-        die();
-    }
-    return $resultat;
-}
    
 function getProduits() {
     $resultat = array();
@@ -106,9 +31,16 @@ function getUnProduit($id) {
     return $resultat;
 }
 
-function ajoutProduit($id, $nom, $description, $packaging, $urlimg, $idgamme){
+function ajoutProduit($id, $nom, $description, $packaging, $idgamme, $urlFront, $nomFichier, $fichier){
     $resultat = false;
     try {
+        $cheminImages = "/vues/images/produits/";
+        $repertoireCible = $urlFront.$cheminImages.$idgamme;
+        // enleve l'extension : trouver meilleure façon d'enlever l'extension (pb des fichiers contenant des points)
+        $nomFichierSansExt = substr($nomFichier, 0, strpos($nomFichier, "."));
+        ajouterImageJpeg($repertoireCible, $nomFichierSansExt, $fichier);
+        $urlimg = ".".$cheminImages.$idgamme."/".$nomFichierSansExt;
+
         $cnx = connexionPDO();
         $req = $cnx->prepare('INSERT INTO produit (id, nom, description, packaging, urlimg, idgamme) VALUES (:id, :nom, :description, :packaging, :urlimg, :idgamme)');
         $req->bindParam(':id', $id, PDO::PARAM_STR);
@@ -145,9 +77,10 @@ function editProduit($id, $nom, $description, $packaging, $urlimg, $idgamme){
     return $resultat;
 }
 
-function supprProduit($id){
+function supprProduit($id, $urlFront, $urlImg){
     $resultat = false;
     try {
+        supprimerImageJpeg($urlFront, substr($urlImg, 1));
         $cnx = connexionPDO();
         $req = $cnx->prepare('DELETE FROM produit WHERE id = :id ');
         $req->bindParam(':id', $id, PDO::PARAM_STR);
@@ -158,6 +91,35 @@ function supprProduit($id){
         die();
     }
     return $resultat;
+}
+
+function ajouterImageJpeg($repertoireCible, $nomFichierSansExt, $fichier){
+    if (!file_exists($repertoireCible))
+    {
+        mkdir ($repertoireCible,0700);
+    }
+    //voir pour renommer image + traitement des doublons et return de l'url ??
+    move_uploaded_file($fichier, $repertoireCible."/".$nomFichierSansExt.".jpg");
+    creerImagesJpeg($repertoireCible,$nomFichierSansExt,300);
+    creerImagesJpeg($repertoireCible,$nomFichierSansExt,750);
+}
+
+function supprimerImageJpeg($urlFront, $urlImg){
+    @unlink($urlFront."/".$urlImg.".jpg");
+    @unlink($urlFront."/".$urlImg."_300w.jpg");
+    @unlink($urlFront."/".$urlImg."_750w.jpg");
+}
+
+function creerImagesJpeg($repertoireCible, $nomFichierSansExt, $largeur){
+    // Calcul des nouvelles dimensions
+    list($width, $height) = getimagesize($repertoireCible."/".$nomFichierSansExt.".jpg");
+    $diff = $width / $largeur;
+    $hauteur = $height / $diff;
+    // crétaion et enregistrement nouvelle image
+    $image = imagecreatefromjpeg($repertoireCible."/".$nomFichierSansExt.".jpg");
+    $nouvelleImage = imagecreatetruecolor($largeur, $hauteur);
+    imagecopyresampled($nouvelleImage, $image, 0, 0, 0, 0, $largeur, $hauteur, $width, $height);
+    imagejpeg($nouvelleImage, $repertoireCible."/".$nomFichierSansExt."_".$largeur."w.jpg") ;
 }
 
 ?>

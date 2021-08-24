@@ -4,7 +4,8 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
     $racine = "..";
 }
 
-include_once("$racine/modele/bd.choco.inc.php");
+include_once("$racine/modele/bd.gamme.inc.php");
+include_once("$racine/modele/bd.produit.inc.php");
 include_once("$racine/modele/bd.utilisateur.inc.php");
 
 // recuperation des donnees GET, POST, et SESSION

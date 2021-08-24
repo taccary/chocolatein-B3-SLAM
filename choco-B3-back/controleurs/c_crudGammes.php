@@ -2,7 +2,8 @@
     if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
         $racine = "..";
     }
-    include_once("$racine/modele/bd.choco.inc.php");
+    
+    include_once("$racine/modele/bd.gamme.inc.php");
 
     // recuperation des donnees GET, POST, et SESSION
     if(isLoggedOn()){
@@ -11,7 +12,7 @@
             $libelle = htmlentities($_POST['libelle']);
             $picto = htmlentities($_POST['picto']);	
 
-            $resultat = ajoutGamme($id, $libelle, $picto);
+            $resultat = ajoutGamme($urlFront, $id, $libelle, $picto);
             
             if($resultat){
                 $_SESSION["success"] = 'Gamme ajouté';
@@ -38,7 +39,7 @@
 
         if(isset($_POST['supr'])){
             $id = htmlentities($_POST['id']);
-            $resultat = supprGamme($id);
+            $resultat = supprGamme($urlFront, $id);
 
             if($resultat){
                 $_SESSION['success'] = 'Gamme supprimé';
