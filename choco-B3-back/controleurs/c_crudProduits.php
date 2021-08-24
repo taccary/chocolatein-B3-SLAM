@@ -24,34 +24,6 @@
                 mkdir ($repertoireCible,0700);
             }
             move_uploaded_file($fichier, $repertoireCible."/".$nomFichier);
-
-            /*
-            // faire une fonction pour générer les 2 images supplémentaires à partir de la première. 
-
-                // Calcul des nouvelles dimensions
-                list($width, $height) = getimagesize($repertoireCible."/".$nomFichier);
-                $new_width1 = 300;
-                $diff = $width / $new_width1;
-                $new_height1 = $height / $diff;
-                $new_width2 = 750;
-                $diff = $width / $new_width2;
-                $new_height2 = $height / $diff;
-                
-                // Redimensionnement
-                $image300 = imagecreatetruecolor($new_width1, $new_height1);
-                $image750 = imagecreatetruecolor($new_width2, $new_height2);
-                $image = imagecreatefromjpeg($repertoireCible."/".$nomFichier);
-                imagecopyresampled($image300, $image, 0, 0, 0, 0, $new_width1, $new_height1, $width, $height);
-                imagecopyresampled($image750, $image, 0, 0, 0, 0, $new_width2, $new_height2, $width, $height);
-                
-                // enleve l'extension
-                $nomFichierSansExt = substr($nomFichier, 0, strpos($nomFichier, "."));
-
-                $nomFichier300 = $nomFichierSansExt."_300w.jpg";
-                imagejpeg($image300, $repertoireCible."/".$nomFichier300) ;
-                $nomFichier750 = $nomFichierSansExt."_750w.jpg";
-                imagejpeg($image750, $repertoireCible."/".$nomFichier750) ;
-            */
             // enleve l'extension
             $nomFichierSansExt = substr($nomFichier, 0, strpos($nomFichier, "."));
 
