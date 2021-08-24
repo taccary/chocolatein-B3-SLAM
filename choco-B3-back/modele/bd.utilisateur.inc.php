@@ -32,7 +32,7 @@ function getUserDaily() {
     $resultat = array();
     try {
         $cnx = connexionPDO();
-        $req = $cnx->prepare("select * from userDaily");
+        $req = $cnx->prepare("select * from userdaily");
         $req->execute();
         $resultat = $req->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
@@ -45,7 +45,7 @@ function addUserDaily($date, $ip){
     $resultat = false;
     try {
         $cnx = connexionPDO();
-        $req = $cnx->prepare('INSERT INTO userDaily (date, ip) VALUES (:date, :ip)');
+        $req = $cnx->prepare('INSERT INTO userdaily (date, ip) VALUES (:date, :ip)');
         $req->bindParam(':date', $date, PDO::PARAM_STR);
         $req->bindParam(':ip', $ip, PDO::PARAM_STR);
         $resultat = $req->execute();

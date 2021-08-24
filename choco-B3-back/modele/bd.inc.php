@@ -3,7 +3,6 @@
 function connexionPDO() {
     $login = "root";
     $mdp = "";
-    //$bd = "oceane-matt-temp";
     $bd = "chocolatein";
     $serveur = "localhost";
 

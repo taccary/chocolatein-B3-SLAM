@@ -13,14 +13,41 @@
             $packaging = htmlentities($_POST['packaging']);	
             $idgamme = htmlentities($_POST['idgamme']);	
             // traitement du fichier
-            $tmpName = $_FILES['fileToUpload']['tmp_name'];
-            $name = $_FILES['fileToUpload']['name'];
-            $size = $_FILES['fileToUpload']['size'];
-            $error = $_FILES['fileToUpload']['error'];
-            $urlimg = $urlFront."vues/images/produits/".$idgamme."/".$name;
-            move_uploaded_file($tmpName, $urlFront.$urlimg);
-			
-            $resultat = ajoutProduit($id, $nom, $description, $packaging, $urlimg, $idgamme);
+            $fichier = $_FILES['fileToUpload']['tmp_name'];
+            $nomFichier = $_FILES['fileToUpload']['name'];
+            $taille = $_FILES['fileToUpload']['size'];
+            $erreur = $_FILES['fileToUpload']['error'];
+            $cheminImages = "/vues/images/produits/";
+            $repertoireCible = $urlFront.$cheminImages.$idgamme;
+            if (!file_exists($repertoireCible))
+            {
+                mkdir ($repertoireCible,0700);
+            }
+            move_uploaded_file($fichier, $repertoireCible."/".$nomFichier);
+
+ 
+            // Content type
+            header('Content-Type: image/jpeg');  
+            // Calcul des nouvelles dimensions
+            list($width, $height) = getimagesize($nomFichier);
+            $new_width = 300;
+            $diff = $width / $newwidth;
+            $newheight = $height / $diff;
+            
+            // Redimensionnement
+            $image_p = imagecreatetruecolor($new_width, $new_height);
+            $image = imagecreatefromjpeg($nomFichier);
+            imagecopyresampled($image_p, $image, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
+            $imagejpeg($image_p, $save) ;
+
+            $nomFichierPetit = $nomFichierSansExt."_300w.jpg";
+            move_uploaded_file($save, $repertoireCible."/".$nomFichierPetit);
+
+            
+            // enleve l'extension
+            $nomFichierSansExt = substr($nomFichier, 0, strpos($nomFichier, "."));
+            $urlimgBDD = ".".$cheminImages.$idgamme."/".$nomFichierSansExt;
+            $resultat = ajoutProduit($id, $nom, $description, $packaging, $urlimgBDD, $idgamme);
             
             if($resultat){
                 $_SESSION["success"] = 'Produit ajouté';

@@ -51,7 +51,7 @@
 						<td><?= $row['nom']; ?></td>
 						<td><?= $row['description']; ?></td>
 						<td><?= $row['packaging']; ?></td>
-						<td><img src="<?= $urlFront; ?><?= $row['urlimg']; ?>" width="100px"/></td>
+						<td><img src="<?= $urlFront; ?><?= substr($row['urlimg'], 1); ?>.jpg" width="100px"/></td>
 						<td><?= $row['idgamme']; ?></td>
 						<td>
 							<a href='#my_modal' class='btn btn-success btn-sm' data-toggle='modal' onclick="chargeModale('<?= $row['id']; ?>', '#my_modal', 'modifProduit')"><span class='glyphicon glyphicon-edit'></span> Modifier</a>
