@@ -39,7 +39,8 @@
 							<label class="control-label modal-label">en ligne : (0/1)</label>
 						</div>
 						<div class="col-sm-9">
-							<input type="text" class="form-control" name="actif" value="<?php echo $data['actif']; ?>">
+							<input type="radio" id="0" name="actif" value="0" <?php if ($data['actif'] == 0){echo "checked";} ?>><label for="0">non</label>
+							<input type="radio" id="1" name="actif" value="1" <?php if ($data['actif'] == 1){echo "checked";} ?>><label for="1">oui</label>
 						</div>
 					</div>
 				</div>

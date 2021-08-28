@@ -38,10 +38,12 @@
 					</div>
 					<div class="row form-group">
 						<div class="col-sm-3">
-							<label class="control-label modal-label">en ligne : (0/1)</label>
+							<label class="control-label modal-label">en ligne : </label>
 						</div>
 						<div class="col-sm-9">
-							<input type="text" class="form-control" name="actif" required style="margin-bottom:5%;">
+							<!--<input type="text" class="form-control" name="actif" required style="margin-bottom:5%;">-->
+							<input type="radio" id="0" name="actif" value="0" checked><label for="0">non</label>
+							<input type="radio" id="1" name="actif" value="1"><label for="1">oui</label>
 						</div>
 					</div>
 				</div>

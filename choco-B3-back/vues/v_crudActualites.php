@@ -48,7 +48,7 @@
 					<tr>
 						<td><?= $row['datepublication']; ?></td>
 						<td><?= $row['titre']; ?></td>
-						<td><?= $row['actif']; ?></td>
+						<td><?php if($row['actif']){echo "activée";} else {echo "desativée";} ?></td>
 						<td>
 							<a href='#my_modal' class='btn btn-success btn-sm' data-toggle='modal' onclick="chargeModale('<?= $row['id']; ?>', '#my_modal', 'modifActualite')"><span class='glyphicon glyphicon-edit'></span> Modifier</a>
 							<a href='#my_modal' class='btn btn-danger btn-sm' data-toggle='modal' onclick="chargeModale('<?= $row['id']; ?>', '#my_modal', 'suprActualite')"><span class='glyphicon glyphicon-trash'></span> Supprimer</a>
