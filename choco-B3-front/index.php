@@ -27,6 +27,9 @@ switch ($uc) {
     case 'contact':
         include './controleurs/c_contact.php';
         break;
+    case 'actualites':
+            include './controleurs/c_actualites.php';
+            break;
     case 'cgu':
         include './controleurs/c_cgu.php';
         break;

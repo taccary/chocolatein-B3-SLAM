@@ -23,3 +23,6 @@ include "$racine/vues/entete.html.php";
 include "$racine/vues/vueCompte.php";
 include "$racine/vues/pied.html.php";
 ?>
+
+
+

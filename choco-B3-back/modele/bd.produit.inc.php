@@ -16,6 +16,21 @@ function getProduits() {
     return $resultat;
 }
 
+function getProduitsByGame($idGamme) {
+    $resultat = array();
+    try {
+        $cnx = connexionPDO();
+        $req = $cnx->prepare("select * from produit WHERE idGamme = :idGamme");
+        $req->bindParam(':idGamme', $idGamme, PDO::PARAM_STR);
+        $req->execute();
+        $resultat = $req->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        print "Erreur !: " . $e->getMessage();
+        die();
+    }
+    return $resultat;
+}
+
 function getUnProduit($id) {
     $resultat = array();
     try {

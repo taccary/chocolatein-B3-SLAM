@@ -48,6 +48,9 @@
                 <a class="nav-link" href="?uc=horaires"><i class="fas fa-clock"></i> Horaires</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="?uc=actualites"><i class="fas fa-newspaper"></i> Actualites</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="?uc=acces"><i class="fas fa-map-marked-alt"></i> Plan d'accès</a>
             </li>
             <li class="nav-item">

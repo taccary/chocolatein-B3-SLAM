@@ -2,16 +2,12 @@
 function controleurPrincipal($action){
     $lesActions = array();
     $lesActions["defaut"] = "c_accueil.php";
-    $lesActions["afficheGammes"] = "c_gammes.php";
-    //$lesActions["afficheProduits"] = "";
-    //$lesActions["afficheInfoLettres"] = "";
-    //$lesActions["afficheMessages"] = "";
-
+    $lesActions["catalogue"] = "c_catalogue.php";
     
     $lesActions["CRUDGammes"] = "c_crudGammes.php";
     $lesActions["CRUDProduits"] = "c_crudProduits.php";
     $lesActions["CRUDMessages"] = "c_crudMessages.php";
-    $lesActions["CRDUActus"] = "c_crudActus.php";
+    $lesActions["CRUDActualites"] = "c_crudActualites.php";
 
     $lesActions["compte"] = "c_compte.php";
     $lesActions["CRUDUtilisateurs"] = "c_crudUtilisateurs.php";

@@ -204,4 +204,18 @@ class PdoChoc {
         return $requetePrepare->fetchAll();
     }
 
+    /**
+     * Retourne sous forme d'un tableau associatif toutes les actualités actives
+     *
+     * @return un tableau associatif
+     */
+    public function getActualitesActives() {
+        $requetePrepare = PdoChoc::$monPdo->prepare(
+            'SELECT actualite.* FROM actualite '
+            . 'WHERE actif=true AND datepublication < curdate()'
+        );
+        $requetePrepare->execute();
+        return $requetePrepare->fetchAll();
+    }
+
 }

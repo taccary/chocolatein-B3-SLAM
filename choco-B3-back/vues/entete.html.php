@@ -18,12 +18,16 @@
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 		<script src="bibliotheques/perso/fonctions.js"></script>
+
+		<!-- bibliotheque ckeditor éditeur riche intégré -->
+		<script src="//cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
+
 	</head>
 
 	<nav id="mySidebar" class="sidebar couleur">
 		<?php
 		// partie pour tout le monde ?>
-			<a class="menu" href="?action=afficheGammes"><i class="material-icons">import_contacts</i><span class="icon-text">Catalogue</span></a><br>
+			<a class="menu" href="?action=catalogue"><i class="material-icons">import_contacts</i><span class="icon-text">Catalogue</span></a><br>
 
 		<?php
 		// partie connectée
@@ -36,9 +40,7 @@
 
 				<a class="menu" href="?action=CRUDMessages"><i class="material-icons">chat</i><span class="icon-text">Gestion des messages</span></a><br>
 
-				<a class="menu" href="?action=CRUDActus"><i class="material-icons">feed</i><span class="icon-text">Gestion des actualités</span></a><br>
-
-				<a class="menu" href="?action="><i class="material-icons">contact_mail</i><span class="icon-text">Liste de diffusion</span></a><br>
+				<a class="menu" href="?action=CRUDActualites"><i class="material-icons">feed</i><span class="icon-text">Gestion des actualités</span></a><br>
 
 				<?php 
 					if(isAdminOn()){ ?>

@@ -7,6 +7,8 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
 include_once("$racine/modele/bd.gamme.inc.php");
 include_once("$racine/modele/bd.produit.inc.php");
 include_once("$racine/modele/bd.utilisateur.inc.php");
+include_once("$racine/modele/bd.actualite.inc.php");
+include_once("$racine/modele/bd.message.inc.php");
 
 // recuperation des donnees GET, POST, et SESSION
 
@@ -51,6 +53,30 @@ switch ($nomVue) {
     case "suprUtilisateur" :
         $fichierVue = "crudUtilisateurs/v_suprUtilisateur.php";
         $data = getUtilisateurByMailU($id);
+        break;
+    case "ajoutActualite" :
+        $fichierVue = "crudActualites/v_ajoutActualite.php";
+        break;
+    case "modifActualite" :
+        $fichierVue = "crudActualites/v_modifActualite.php";
+        $data = getUneActualite($id);
+        break;
+    case "suprActualite" :
+        $fichierVue = "crudActualites/v_suprActualite.php";
+        $data = getUneActualite($id);
+        break;
+    case "voirMessage" :
+        $fichierVue = "crudMessages/v_voirMessage.php";
+        $data = getUnMessage($id);
+        $datareponse = getReponse($id);
+        break;
+    case "repondreMessage" :
+        $fichierVue = "crudMessages/v_repondreMessage.php";
+        $data = getUnMessage($id);
+        break;
+    case "suprMessage" :
+        $fichierVue = "crudMessages/v_suprMessage.php";
+        $data = getUnMessage($id);
         break;
 }
 
