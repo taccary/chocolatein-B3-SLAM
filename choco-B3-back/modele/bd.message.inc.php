@@ -46,7 +46,7 @@ function getReponse($id) {
     return $resultat;
 }
 
-function repondreMessage($id, $objet, $mail, $contenu){
+/*function repondreMessage($id, $objet, $mail, $contenu){
     $resultat = false;
     try {
         $to      = $mail;
@@ -71,14 +71,15 @@ function repondreMessage($id, $objet, $mail, $contenu){
         die();
     }
     return $resultat;
-}
+}*/
 
-function traiterMessage($id){
+function traiterMessage($id, $commentaire){
     $resultat = false;
     try {
         $cnx = connexionPDO();
-        $req = $cnx->prepare('UPDATE contact SET traite = 1 WHERE id = :id');
+        $req = $cnx->prepare('UPDATE contact SET traite = 1, commentaire = :commentaire, datetraitement = curdate() WHERE id = :id');
         $req->bindParam(':id', $id, PDO::PARAM_STR);
+        $req->bindParam(':commentaire', $commentaire, PDO::PARAM_STR);
         $resultat = $req->execute();
     } catch (PDOException $e) {
         print "Erreur !: " . $e->getMessage();

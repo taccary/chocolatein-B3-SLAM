@@ -15,17 +15,9 @@
 				<b>Message</b> : <?php echo $data['message']; ?><br/>
 			</div>
 			<hr>
-			<?php
-				if ($datareponse){ ?>
-					Vous avez déjà répondu à ce message : <br/>
-					<b>Date de la réponse</b> : <?php echo $datareponse['datereponse']; ?><br/>
-					<b>Objet de la réponse</b> : <?php echo $datareponse['objet']; ?><br/>
-					<b>Contenu de la réponse</b> : <?php echo $datareponse['contenu']; ?><br/>
-				<?php } else { ?>
-					Cette demande à été traitée le <?php echo $data['dateTraitement']; ?> <br/>
-					<b>Commentaire</b> : <?php echo $data['commentaireTraitement']; ?><br/>
-
-				<?php } ?>
+			Cette demande a été traitée le <?php echo $data['datetraitement']; ?>
+			avec le commentaire suivant : <br/>
+			<?php echo $data['commentaire']; ?>
 
 			
 		</div>

@@ -68,7 +68,6 @@ switch ($nomVue) {
     case "voirMessage" :
         $fichierVue = "crudMessages/v_voirMessage.php";
         $data = getUnMessage($id);
-        $datareponse = getReponse($id);
         break;
     case "repondreMessage" :
         $fichierVue = "crudMessages/v_repondreMessage.php";

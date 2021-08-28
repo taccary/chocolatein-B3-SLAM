@@ -9,7 +9,7 @@
     if(isLoggedOn()){
      
 
-        if(isset($_POST['reply'])){
+        /*if(isset($_POST['reply'])){
             $id = htmlentities($_POST['id']);
             $objet = htmlentities($_POST['objet']);
             $contenu = $_POST['contenu'];	
@@ -24,13 +24,13 @@
             else{
                 $_SESSION['error'] = 'Problème lors de l\'envoi de la réponse à la demande de contact';
             }
-        }
+        }*/
 
         
         if(isset($_POST['done'])){
             $id = htmlentities($_POST['id']);
-            
-            $resultat = traiterMessage($id);
+            $commentaire = $_POST['commentaire'];
+            $resultat = traiterMessage($id, $commentaire);
 
             if($resultat){
                 $_SESSION['success'] = 'Demande de contact marquée comme traitée';
