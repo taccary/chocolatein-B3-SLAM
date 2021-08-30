@@ -23,7 +23,7 @@
                     <td><?= $row['nom']; ?></td>
                     <td><?= $row['description']; ?></td>
                     <td><?= $row['packaging']; ?></td>
-                    <td><img src="<?= $urlFront; ?><?= substr($row['urlimg'], 1); ?>.jpg" width="100px"/></td>
+                    <td><img src="<?= $urlFront; ?><?= substr($row['urlimg'], 1); ?>_300w.jpg" width="100px"/></td>
                 </tr>
                 <?php
             }
