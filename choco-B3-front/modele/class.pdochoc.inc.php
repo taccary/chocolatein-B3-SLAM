@@ -2,7 +2,7 @@
 
 class PdoChoc {
 
-    private static $serveur = 'mysql:host=localhost';
+    private static $serveur = 'mysql:host=localhost'; //10.0.0.4
     private static $bdd = 'dbname=chocolatein';
     private static $user = 'userChoc';
     private static $mdp = 'p@ssCh0c';
@@ -212,7 +212,7 @@ class PdoChoc {
     public function getActualitesActives() {
         $requetePrepare = PdoChoc::$monPdo->prepare(
             'SELECT actualite.* FROM actualite '
-            . 'WHERE actif=true AND datepublication < curdate()'
+            . 'WHERE actif=true AND datepublication < curdate() ORDER BY datepublication DESC'
         );
         $requetePrepare->execute();
         return $requetePrepare->fetchAll();

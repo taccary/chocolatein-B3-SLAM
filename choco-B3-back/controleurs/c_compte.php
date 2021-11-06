@@ -18,9 +18,9 @@ if (!isset($_SESSION)) {
 $user = getUtilisateurByMailU($_SESSION['mail']);
 
 // appel du script de vue qui permet de gerer l'affichage des donnees
-$title = "Compte";
+$title = "Mes informations personnelles";
 include "$racine/vues/entete.html.php";
-include "$racine/vues/vueCompte.php";
+include "$racine/vues/v_compte.php";
 include "$racine/vues/pied.html.php";
 ?>
 

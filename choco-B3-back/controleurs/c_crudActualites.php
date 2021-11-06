@@ -59,7 +59,7 @@
         // traitement si necessaire des donnees recuperees
 
         // appel du script de vue qui permet de gerer l'affichage des donnees
-        $title = "Gestion des produits";
+        $title = "Gestion des actualités";
         include "$racine/vues/entete.html.php";
         include "$racine/vues/v_crudActualites.php";
         include "$racine/vues/pied.html.php";

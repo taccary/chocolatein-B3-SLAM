@@ -4,7 +4,7 @@
         $racine = "..";
     }
 
-    include_once("$racine/modele/authentification.inc.php");
+    include_once("$racine/modele/bd.authentification.inc.php");
     include_once("$racine/modele/bd.utilisateur.inc.php");
 
     if(isLoggedOn()){
@@ -61,7 +61,6 @@
 
 
         // traitement si necessaire des donnees recuperees
-        $admin = isAdminOn();
         $utilisateur = getUtilisateurs();
         $roles = getRoles();
         // appel du script de vue qui permet de gerer l'affichage des donnees

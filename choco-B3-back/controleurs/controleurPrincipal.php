@@ -1,7 +1,6 @@
 <?php
 function controleurPrincipal($action){
     $lesActions = array();
-    $lesActions["defaut"] = "c_accueil.php";
     $lesActions["catalogue"] = "c_catalogue.php";
     
     $lesActions["CRUDGammes"] = "c_crudGammes.php";
@@ -16,6 +15,12 @@ function controleurPrincipal($action){
 
     $lesActions["connexion"] = "c_connexion.php";
     $lesActions["deconnexion"] = "c_deconnexion.php";
+
+    $lesActions["defaut"] = "c_connexion.php";
+    if (isLoggedOn()){
+        $lesActions["defaut"] = "c_catalogue.php";
+    }
+    
     
     if (array_key_exists ( $action , $lesActions )){
         return $lesActions[$action];

@@ -1,7 +1,7 @@
 <?php
 include "getRacine.php";
 include "$racine/controleurs/controleurPrincipal.php";
-include_once "$racine/modele/authentification.inc.php";
+include_once "$racine/modele/bd.authentification.inc.php";
 
 
 

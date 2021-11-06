@@ -16,6 +16,7 @@ function login() {
             // le mot de passe est celui de l'utilisateur dans la base de donnees
             $_SESSION["mail"] = $pseudoconnect;
             $_SESSION["motdepasse"] = $mdpBD;
+            $_SESSION["role"] = $util["role"];
             header("Location: index.php");
         }
     }
@@ -55,18 +56,10 @@ function isLoggedOn() {
     return $ret;
 }
 
-function isAdminOn(){
-    if (!isset($_SESSION)) {
-        session_start();
-    }
+function roleIsIn($tableauRole){
     $ret = false;
-    if(isset($_SESSION["mail"])){
-        $util = getUtilisateurByMailU($_SESSION["mail"]);
-        if($util['role'] == 1) {
-            $ret = true;
-        }
-    }else{
-        echo "ERROR";
+    if(isset($_SESSION["role"]) && in_array($_SESSION["role"], $tableauRole)){
+        $ret = true;
     }
     return $ret;
 }

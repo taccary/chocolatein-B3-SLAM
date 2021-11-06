@@ -7,5 +7,7 @@
  */
 
 $racine = dirname(__FILE__);
-$urlFront = "../choco-B3-front";
+/*$urlFront = "../choco-B3-front";*/
+$urlFront = "http://192.168.1.48";
+
 ?>
