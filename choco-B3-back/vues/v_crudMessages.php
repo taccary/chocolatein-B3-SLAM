@@ -65,10 +65,6 @@
 		</table>
 	</div>
 
-<script src="bibliotheques/jquery/jquery.min.js"></script>
-<script src="bibliotheques/bootstrap/js/bootstrap.min.js"></script>
-<script src="bibliotheques/datatable/jquery.dataTables.min.js"></script>
-<script src="bibliotheques/datatable/dataTable.bootstrap.min.js"></script>
 <!-- generate datatable on our table -->
 <script>
 	$(document).ready(function(){

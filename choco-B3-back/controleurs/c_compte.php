@@ -12,16 +12,20 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
 
 
 // traitement si necessaire des donnees recuperees
-if (!isset($_SESSION)) {
-    session_start();
-}
-$user = getUtilisateurByMailU($_SESSION['mail']);
+    if(isLoggedOn()){
 
-// appel du script de vue qui permet de gerer l'affichage des donnees
-$title = "Mes informations personnelles";
-include "$racine/vues/entete.html.php";
-include "$racine/vues/v_compte.php";
-include "$racine/vues/pied.html.php";
+        $user = getUtilisateurByMailU($_SESSION['mail']);
+
+        // appel du script de vue qui permet de gerer l'affichage des donnees
+        $title = "Mes informations personnelles";
+        include "$racine/vues/entete.html.php";
+        include "$racine/vues/v_compte.php";
+        include "$racine/vues/pied.html.php";
+
+    }else{
+        header("Location: ?action=connexion");
+    }
+
 ?>
 
 

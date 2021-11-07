@@ -18,10 +18,29 @@
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 		<script src="bibliotheques/perso/fonctions.js"></script>
-
+		<script src="bibliotheques/jquery/jquery.min.js"></script>
+		<script src="bibliotheques/bootstrap/js/bootstrap.min.js"></script>
+		<script src="bibliotheques/datatable/jquery.dataTables.min.js"></script>
+		<script src="bibliotheques/datatable/dataTable.bootstrap.min.js"></script>
 		<!-- bibliotheque ckeditor éditeur riche intégré -->
 		<script src="//cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
 
+		<script type="text/javascript">
+			// Include this file AFTER both jQuery and bootstrap are loaded.
+			$.fn.modal.Constructor.prototype.enforceFocus = function() {
+			modal_this = this
+			$(document).on('focusin.modal', function (e) {
+				if (modal_this.$element[0] !== e.target && !modal_this.$element.has(e.target).length 
+				&& !$(e.target.parentNode).hasClass('cke_dialog_ui_input_select') 
+				&& !$(e.target.parentNode).hasClass('cke_dialog_ui_input_textarea')
+				&& !$(e.target.parentNode).hasClass('cke_dialog_ui_input_text')) {
+				modal_this.$element.focus()
+				}
+			})
+			};
+		</script>
+
+		
 	</head>
 
 	<nav id="mySidebar" class="sidebar couleur">
@@ -40,14 +59,12 @@
 					<a class="menu" href="?action=CRUDGammes"><i class="material-icons">inventory_2</i><span class="icon-text">Gestion des gammes</span></a><br>
 
 					<a class="menu" href="?action=CRUDProduits"><i class="material-icons">category</i><span class="icon-text">Gestion des produits</span></a><br>
+					
+					<a class="menu" href="?action=CRUDActualites"><i class="material-icons">feed</i><span class="icon-text">Gestion des actualités</span></a><br>
 				<?php
 				} 
 				if(roleIsIn([1,2])){ ?>
 					<a class="menu" href="?action=CRUDMessages"><i class="material-icons">chat</i><span class="icon-text">Gestion des messages</span></a><br>
-				<?php
-				} 
-				if(roleIsIn([1,2,3])){ ?>
-					<a class="menu" href="?action=CRUDActualites"><i class="material-icons">feed</i><span class="icon-text">Gestion des actualités</span></a><br>
 				<?php
 				} 
 				if(roleIsIn([1])){ ?>
