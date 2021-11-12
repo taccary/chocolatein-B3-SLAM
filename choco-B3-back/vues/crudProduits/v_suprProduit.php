@@ -7,7 +7,7 @@
         </div>
         <div class="modal-body">	
             <p class="text-center">Etes-vous sure de vouloir supprimer le produit <?php echo $data['id']; ?> (gamme <?= $data['idgamme']; ?>)<br/>
-            <img src="<?= $urlFront; ?><?= $data['urlimg']; ?>" width="100px"/><br/>
+            <img src="<?= $data['urlimg']; ?>" width="100px"/><br/>
             <?= $data['nom']; ?> (<?= $data['description']; ?>)<br/>
             <?= $data['packaging']; ?>        
         </p>

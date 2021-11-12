@@ -31,15 +31,17 @@ function getUneGamme($id) {
     return $resultat;
 }
 
-function ajoutGamme($urlFront, $id, $libelle, $picto){
+function ajoutGamme($id, $libelle, $picto){
     $resultat = false;
     try {
-        $cheminImages = "/vues/images/produits/";
-        $repertoireCible = $urlFront.$cheminImages.$id;
+        $cheminImages = "./vues/images/produits/";
+        $repertoireCible = $cheminImages.$id;
         if (!file_exists($repertoireCible))
         {
             mkdir ($repertoireCible,0700);
         }
+
+
         $cnx = connexionPDO();
         $req = $cnx->prepare('INSERT INTO gamme (id, libelle, picto) VALUES (:id, :libelle, :picto)');
         $req->bindParam(':id', $id, PDO::PARAM_STR);
@@ -56,6 +58,11 @@ function ajoutGamme($urlFront, $id, $libelle, $picto){
 function editGamme($id, $libelle, $picto){
     $resultat = false;
     try {
+
+            // si le nom de la gamme change, modifier le nom du dossier des images
+
+
+
         $cnx = connexionPDO();
         $req = $cnx->prepare('UPDATE gamme SET libelle = :libelle, picto = :picto  WHERE id = :id');
         $req->bindParam(':id', $id, PDO::PARAM_STR);
@@ -69,7 +76,7 @@ function editGamme($id, $libelle, $picto){
     return $resultat;
 }
 
-function supprGamme($urlFront, $id){
+function supprGamme($id){
     $resultat = false;
     try {
 
@@ -78,9 +85,12 @@ function supprGamme($urlFront, $id){
 
 
         // détruire le dossier de la gamme 
-        $cheminImages = "/vues/images/produits/";
-        $repertoireCible = $urlFront.$cheminImages.$id;
-        rmdir($repertoireCible);
+        $cheminImages = "./vues/images/produits/";
+        $repertoireCible = $cheminImages.$id;
+        if (file_exists($repertoireCible))
+        {
+            rmdir($repertoireCible);
+        }
         $cnx = connexionPDO();
         $req = $cnx->prepare('DELETE FROM gamme WHERE id = :id ');
         $req->bindParam(':id', $id, PDO::PARAM_STR);

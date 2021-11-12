@@ -12,7 +12,7 @@
             $libelle = htmlentities($_POST['libelle']);
             $picto = htmlentities($_POST['picto']);	
 
-            $resultat = ajoutGamme($urlFront, $id, $libelle, $picto);
+            $resultat = ajoutGamme($id, $libelle, $picto);
             
             if($resultat){
                 $_SESSION["success"] = 'Gamme ajouté';
@@ -39,7 +39,7 @@
 
         if(isset($_POST['supr'])){
             $id = htmlentities($_POST['id']);
-            $resultat = supprGamme($urlFront, $id);
+            $resultat = supprGamme($id);
 
             if($resultat){
                 $_SESSION['success'] = 'Gamme supprimé';

@@ -46,15 +46,15 @@ function getUnProduit($id) {
     return $resultat;
 }
 
-function ajoutProduit($id, $nom, $description, $packaging, $idgamme, $urlFront, $nomFichier, $fichier){
+function ajoutProduit($id, $nom, $description, $packaging, $idgamme, $nomFichier, $fichier){
     $resultat = false;
     try {
-        $cheminImages = "/vues/images/produits/";
-        $repertoireCible = $urlFront.$cheminImages.$idgamme;
+        $cheminImages = "./vues/images/produits/";
+        $repertoireCible = $cheminImages.$idgamme;
         // enleve l'extension : trouver meilleure façon d'enlever l'extension (pb des fichiers contenant des points)
         $nomFichierSansExt = substr($nomFichier, 0, strpos($nomFichier, "."));
         ajouterImageJpeg($repertoireCible, $nomFichierSansExt, $fichier);
-        $urlimg = ".".$cheminImages.$idgamme."/".$nomFichierSansExt;
+        $urlimg = $cheminImages.$idgamme."/".$nomFichierSansExt;
 
         $cnx = connexionPDO();
         $req = $cnx->prepare('INSERT INTO produit (id, nom, description, packaging, urlimg, idgamme) VALUES (:id, :nom, :description, :packaging, :urlimg, :idgamme)');
@@ -92,10 +92,10 @@ function editProduit($id, $nom, $description, $packaging, $urlimg, $idgamme){
     return $resultat;
 }
 
-function supprProduit($id, $urlFront, $urlImg){
+function supprProduit($id, $urlImg){
     $resultat = false;
     try {
-        supprimerImageJpeg($urlFront, substr($urlImg, 1));
+        supprimerImageJpeg($urlImg);
         $cnx = connexionPDO();
         $req = $cnx->prepare('DELETE FROM produit WHERE id = :id ');
         $req->bindParam(':id', $id, PDO::PARAM_STR);
@@ -119,10 +119,10 @@ function ajouterImageJpeg($repertoireCible, $nomFichierSansExt, $fichier){
     creerImagesJpeg($repertoireCible,$nomFichierSansExt,750);
 }
 
-function supprimerImageJpeg($urlFront, $urlImg){
-    @unlink($urlFront."/".$urlImg.".jpg");
-    @unlink($urlFront."/".$urlImg."_300w.jpg");
-    @unlink($urlFront."/".$urlImg."_750w.jpg");
+function supprimerImageJpeg($urlImg){
+    @unlink($urlImg.".jpg");
+    @unlink($urlImg."_300w.jpg");
+    @unlink($urlImg."_750w.jpg");
 }
 
 function creerImagesJpeg($repertoireCible, $nomFichierSansExt, $largeur){

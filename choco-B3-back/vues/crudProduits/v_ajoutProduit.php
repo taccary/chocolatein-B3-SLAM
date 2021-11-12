@@ -46,7 +46,7 @@
 							<label class="control-label modal-label">Image :</label>
 						</div>
 						<div class="col-sm-9">
-							Ajouter une image :
+							Ajouter une image au format jpeg :
 							<input accept="image/jpeg" type="file" name="fileToUpload" id="fileToUpload" class="custom-file-input" value="" required>
 							<img id="preview" class="w-50 img-fluid">
 						</div>

@@ -19,7 +19,7 @@
             $taille = $_FILES['fileToUpload']['size'];
             $erreur = $_FILES['fileToUpload']['error'];
 
-            $resultat = ajoutProduit($id, $nom, $description, $packaging, $idgamme, $urlFront, $nomFichier, $fichier);
+            $resultat = ajoutProduit($id, $nom, $description, $packaging, $idgamme, $nomFichier, $fichier);
             
             if($resultat){
                 $_SESSION["success"] = 'Produit ajouté';
@@ -50,7 +50,7 @@
         if(isset($_POST['supr'])){
             $id = htmlentities($_POST['id']);
             $img = htmlentities($_POST['urlimg']);
-            $resultat = supprProduit($id, $urlFront, $img);
+            $resultat = supprProduit($id, $img);
 
             if($resultat){
                 $_SESSION['success'] = 'Produit supprimé';
