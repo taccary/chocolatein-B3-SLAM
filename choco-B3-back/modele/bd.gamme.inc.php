@@ -38,7 +38,7 @@ function ajoutGamme($id, $libelle, $picto){
         $repertoireCible = $cheminImages.$id;
         if (!file_exists($repertoireCible))
         {
-            mkdir ($repertoireCible,0700);
+            mkdir($repertoireCible,0700);
         }
 
 
