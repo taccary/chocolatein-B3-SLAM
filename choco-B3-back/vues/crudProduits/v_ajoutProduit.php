@@ -47,7 +47,7 @@
 						</div>
 						<div class="col-sm-9">
 							Ajouter une image :
-							<input accept="image/png, image/jpeg" type="file" name="fileToUpload" id="fileToUpload" class="custom-file-input" value="">
+							<input accept="image/jpeg" type="file" name="fileToUpload" id="fileToUpload" class="custom-file-input" value="" required>
 							<img id="preview" class="w-50 img-fluid">
 						</div>
 						
