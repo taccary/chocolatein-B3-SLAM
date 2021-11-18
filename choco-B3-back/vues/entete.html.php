@@ -71,11 +71,11 @@
 						<a class="menu" href="?action=CRUDUtilisateurs"><i class="material-icons">group</i><span class="icon-text">Gestion des utilisateurs</span></a><br>
 					<?php } ?>
 			
-					<a class="menu" href="?action=deconnexion"><i class="material-icons">logout</i><span class="icon-text">Déconnexion</a></span></a><br>
+					<a class="menu" href="?action=deconnexion"><i class="material-icons">logout</i><span class="icon-text">Déconnexion</span></a><br>
 
 				<?php
 				} else { ?>
-					<a class="menu" href="?action=connexion"><i class="material-icons">login</i><span class="icon-text">Connexion</a></span></a><br>
+					<a class="menu" href="?action=connexion"><i class="material-icons">login</i><span class="icon-text">Connexion</span></a><br>
 				<?php 
 				}
 				?>

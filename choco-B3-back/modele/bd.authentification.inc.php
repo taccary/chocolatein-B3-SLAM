@@ -3,31 +3,25 @@
 include_once "bd.utilisateur.inc.php";
 
 
-function login() {
-    if(isset($_POST['formconnexion'])){
-        $pseudoconnect = $_POST['formmail'];
-        $passconnect = hash('sha256', $_POST['formmdp']);
-        $util = getUtilisateurByMailU($pseudoconnect);
-        $mdpBD =  $util["motdepasse"]; 
-        if($mdpBD == $passconnect){
-            if (!isset($_SESSION)) {
-                session_start();
-            }
-            // le mot de passe est celui de l'utilisateur dans la base de donnees
-            $_SESSION["mail"] = $pseudoconnect;
-            $_SESSION["motdepasse"] = $mdpBD;
-            $_SESSION["role"] = $util["role"];
-            header("Location: index.php");
+function login($pseudoconnect, $passconnect) {
+    $util = getUtilisateurByMailU($pseudoconnect);
+    $mdpBD =  $util["motdepasse"]; 
+    if($mdpBD == $passconnect){
+        if (!isset($_SESSION)) {
+            session_start();
         }
+        // le mot de passe est celui de l'utilisateur dans la base de donnees
+        $_SESSION["mail"] = $pseudoconnect;
+        $_SESSION["motdepasse"] = $mdpBD;
+        $_SESSION["role"] = $util["role"];
+        //header("Location: index.php");
     }
 }
 
 function logout() {
     if (isLoggedOn()){
-        session_destroy();
-        header("refresh:4;url=index.php");
-    }else{
-        header('Location: index.php');
+        session_unset();
+        //header("Location: index.php");
     }
 }
 

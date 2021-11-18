@@ -111,7 +111,7 @@ function supprProduit($id, $urlImg){
 function ajouterImageJpeg($repertoireCible, $nomFichierSansExt, $fichier){
     if (!file_exists($repertoireCible))
     {
-        mkdir ($repertoireCible,0700);
+        mkdir ($repertoireCible,0775);
     }
     //voir pour renommer image + traitement des doublons et return de l'url ??
     move_uploaded_file($fichier, $repertoireCible."/".$nomFichierSansExt.".jpg");

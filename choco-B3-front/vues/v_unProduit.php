@@ -44,7 +44,7 @@
     </div>
     <div class="row">
         <div class="col-md-8">
-            <img class="img-fluid" src="<?= $urlImgPdt ?>_750w.jpg" alt="<?= $nomPdt ?>">
+            <img class="img-fluid" src="<?= $urlBack."/".$urlImgPdt ?>_750w.jpg" alt="<?= $nomPdt ?>">
         </div>
         <div class="col-md-4">
             <h3>Description</h3>
