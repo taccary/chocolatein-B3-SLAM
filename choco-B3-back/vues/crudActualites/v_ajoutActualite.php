@@ -7,7 +7,7 @@
 		</div>
 		<div class="modal-body">
 		
-			<form method="POST" action="?action=CRUDActualites" enctype="multipart/form-data">
+			<form method="POST" action="?action=CRUDActualites">
 				<div class="container-fluid">
 					<div class="row form-group">
 						<div class="col-sm-3">

